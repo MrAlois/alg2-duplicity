@@ -5,39 +5,22 @@
 #ifndef ALG2_LOWERCASE_PRESORTINGALGORITHM_H
 #define ALG2_LOWERCASE_PRESORTINGALGORITHM_H
 
+#include "AlgorithmInterface.h"
 
-#include "IAlgorithm.h"
-#include "../AlgoUtils.h"
-
-class PreSortingAlgorithm : public IAlgorithm{
+class PreSortingAlgorithm : public AlgorithmInterface{
 public:
     PreSortingAlgorithm() = default;
-    ~PreSortingAlgorithm() override {
-        delete this;
-    };
+    ~PreSortingAlgorithm() override = default;
 
-    std::vector<std::string> find_unique(const char* path) override {
-        std::cout << "INFO: Using algorithm of type [PRE_SORTED] to find unique words in file." << std::endl;
-        std::vector<std::string> vData;
+    std::vector<std::string> process(std::vector<std::string>& data) override {
+        std::cout << "INFO: Using algorithm of type [PRE_SORTED] to find all unique words in file." << std::endl;
 
-        std::ifstream filestream = AlgoUtils::readFile(path);
+        auto result = data;
+        sort(result.begin(), result.end());
+        result.erase(unique(result.begin(), result.end()), result.end());
 
-        // Load Data
-        for (std::string cache; std::getline(filestream, cache);)
-            vData.push_back(cache);
-
-        // Sort data
-        auto total_size = vData.size();
-        std::sort(vData.begin(), vData.end(), AlgoUtils::lexi_comparator);
-
-        // Throw out data
-        vData.erase( unique( vData.begin(), vData.end() ), vData.end());
-
-        // Finish
-        std::cout << "INFO: From total of {" << total_size << "} word found {" << vData.size() << "} that were unique." << std::endl;
-        filestream.close();
-
-        return vData;
+        std::cout << "INFO: From total of " << data.size() << " words, " << result.size() << " of them were unique." << std::endl;
+        return result;
     }
 };
 

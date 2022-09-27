@@ -5,36 +5,24 @@
 #ifndef ALG2_LOWERCASE_BRUTEFORCEALGORITHM_H
 #define ALG2_LOWERCASE_BRUTEFORCEALGORITHM_H
 
+#include "AlgorithmInterface.h"
 
-#include "IAlgorithm.h"
-#include "../AlgoUtils.h"
-
-class BruteForceAlgorithm : public IAlgorithm{
+class BruteForceAlgorithm : public AlgorithmInterface{
 public:
     BruteForceAlgorithm() = default;
-    ~BruteForceAlgorithm() override {
-        delete this;
-    }
+    ~BruteForceAlgorithm() override = default;
 
-    std::vector<std::string> find_unique(const char* path) override {
-        std::cout << "INFO: Using algorithm of type [BRUTE_FORCE] to find unique words in file." << std::endl;
-        std::vector<std::string> vData;
+    std::vector<std::string> process(std::vector<std::string>& data) override {
+        std::cout << "INFO: Using algorithm of type [BRUTE_FORCE] to find all unique words in file." << std::endl;
 
-        std::ifstream filestream = AlgoUtils::readFile(path);
-
-        // Read data & brute check duplicity
-        auto total_size = 0;
-        for(std::string buffer; std::getline(filestream, buffer); total_size++) {
-            if(std::find(vData.begin(), vData.end(), buffer) != vData.end()) continue;
-
-            vData.push_back(buffer);
+        std::vector<std::string> result;
+        for(const auto& text : data){
+            if(std::find(result.begin(), result.end(), text) != result.end()) continue;
+            result.push_back(text);
         }
 
-        // Finish
-        std::cout << "INFO: From total of {" << total_size << "} words found {" << vData.size() << "} that were unique." << std::endl;
-        filestream.close();
-
-        return vData;
+        std::cout << "INFO: From total of " << data.size() << " words, " << result.size() << " of them were unique." << std::endl;
+        return result;
     }
 };
 
