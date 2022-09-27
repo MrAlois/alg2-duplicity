@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/asenkyrik/CLionProjects/alg2-homework
+# Install script for directory: C:/Users/asenkyrik/CLionProjects/alg2-lowercase
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/asenkyrik/CLionProjects/alg2-homework/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/asenkyrik/CLionProjects/alg2-lowercase/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
