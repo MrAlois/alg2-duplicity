@@ -22,8 +22,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Set up msbuild
-        uses: microsoft/setup-msbuild@v1.0.2
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
@@ -45,9 +43,11 @@ jobs:
           curl -sSLo $HOME\.sonar\build-wrapper.zip ${{ env.BUILD_WRAPPER_DOWNLOAD_URL }} 
           unzip -o $HOME\.sonar\build-wrapper.zip -d $HOME\.sonar\
           echo "$HOME\.sonar\build-wrapper-win-x86" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
-      - name: Run build-wrapper
+      - name: Run cmake
         run: |
-          build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild sonar_scanner_example.vcxproj /t:rebuild /nodeReuse:false
+          mkdir build
+          cmake -S . -B build
+          build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake --build build/ --config Release
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
