@@ -49,11 +49,11 @@ cmake_ninja_workdir = C$:/Users/asenkyrik/CLionProjects/alg2-homework/cmake-buil
 
 build cmake_object_order_depends_target_alg2_homework: phony || CMakeFiles/alg2_homework.dir
 
-build CMakeFiles/alg2_homework.dir/main.cpp.obj: CXX_COMPILER__alg2_homework_Debug C$:/Users/asenkyrik/CLionProjects/alg2-homework/main.cpp || cmake_object_order_depends_target_alg2_homework
-  DEP_FILE = CMakeFiles\alg2_homework.dir\main.cpp.obj.d
+build CMakeFiles/alg2_homework.dir/src/main.cpp.obj: CXX_COMPILER__alg2_homework_Debug C$:/Users/asenkyrik/CLionProjects/alg2-homework/src/main.cpp || cmake_object_order_depends_target_alg2_homework
+  DEP_FILE = CMakeFiles\alg2_homework.dir\src\main.cpp.obj.d
   FLAGS = -g -std=gnu++23
   OBJECT_DIR = CMakeFiles\alg2_homework.dir
-  OBJECT_FILE_DIR = CMakeFiles\alg2_homework.dir
+  OBJECT_FILE_DIR = CMakeFiles\alg2_homework.dir\src
 
 
 # =============================================================================
@@ -63,7 +63,7 @@ build CMakeFiles/alg2_homework.dir/main.cpp.obj: CXX_COMPILER__alg2_homework_Deb
 #############################################
 # Link the executable alg2_homework.exe
 
-build alg2_homework.exe: CXX_EXECUTABLE_LINKER__alg2_homework_Debug CMakeFiles/alg2_homework.dir/main.cpp.obj
+build alg2_homework.exe: CXX_EXECUTABLE_LINKER__alg2_homework_Debug CMakeFiles/alg2_homework.dir/src/main.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\alg2_homework.dir
